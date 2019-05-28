@@ -1,6 +1,6 @@
 # always-video-progress-bar-on-ani.gamer.com.tw
 
-Always video show progress bar in ani.gamer.com.tw.
+Always show video loaded & played progress bars in ani.gamer.com.tw.
 
 ## Install
 
