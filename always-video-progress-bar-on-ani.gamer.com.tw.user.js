@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Always video progress bar on ani.gamer.com.tw
 // @namespace    https://wiki.gslin.org/wiki/Always_video_progress_bar_on_ani.gamer.com.tw
-// @version      0.20190528.0
+// @version      0.20190529.0
 // @description  Enable progress bar on ani.gamer.com.tw
 // @author       Gea-Suan Lin <darkkiller@gmail.com>
 // @match        https://ani.gamer.com.tw/animeVideo.php*
@@ -13,7 +13,7 @@
     'use strict';
 
     let bar = document.createElement('div');
-    bar.style = 'background: #000; display: block; height: 5px; margin: 0; padding: 0; width: 100%;';
+    bar.style = 'background: #000; display: block; height: 5px; margin: 0; padding: 0; position: relative; width: 100%;';
 
     let loadedbar = document.createElement('div');
     loadedbar.style = 'background: #777; display: block; height: 5px; margin: 0; padding: 0; position: absolute; width: 100%;';
