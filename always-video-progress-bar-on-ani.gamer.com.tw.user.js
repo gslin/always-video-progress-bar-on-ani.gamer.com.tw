@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Always video progress bar on ani.gamer.com.tw
 // @namespace    https://wiki.gslin.org/wiki/Always_video_progress_bar_on_ani.gamer.com.tw
-// @version      0.20190529.0
+// @version      0.20210508.0
 // @description  Enable progress bar on ani.gamer.com.tw
 // @author       Gea-Suan Lin <darkkiller@gmail.com>
 // @match        https://ani.gamer.com.tw/animeVideo.php*
@@ -25,7 +25,15 @@
 
     let vf = document.querySelector('.videoframe');
 
+    /*
+     * Append "bar" element to the correspoding position.
+     */
     let ob1 = new window.MutationObserver(() => {
+        let vjs = document.querySelector('video-js');
+        if (!vjs || !vjs.classList.contains('vjs-playing')) {
+            return;
+        }
+
         let v = vf.querySelector('#ani_video_html5_api');
         if (!v) {
             return;
@@ -38,7 +46,12 @@
             progressbar.style.width = (100 * v.currentTime / v.duration) + '%';
         });
 
-        vf.insertBefore(bar, vf.querySelector('.bullet-send'));
+        // Different position in ".fullwindow" mode.
+        if (vf.classList.contains('vjs-fullwindow')) {
+            vf.after(bar);
+        } else {
+            vf.appendChild(bar);
+        }
 
         ob1.disconnect();
     });
@@ -47,6 +60,9 @@
         subtree: true,
     });
 
+    /*
+     * Handle pause & resume.
+     */
     let ob2 = new window.MutationObserver(() => {
         let vjs = document.querySelector('video-js');
         if (!vjs) {
